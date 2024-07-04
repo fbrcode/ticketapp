@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:15.5
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - pg15-vol:/var/lib/postgresql/data
+      - ./database/00-init.sql:/docker-entrypoint-initdb.d/00-init.sql
+    ports:
+      - ${POSTGRES_PORT:-5432}:5432
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      retries: 5
+    restart: always
+
+volumes:
+  pg15-vol:
