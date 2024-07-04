@@ -36,6 +36,8 @@ Use [shadcn/ui](https://ui.shadcn.com/) for components and styles.
 
 Init the project: `npx shadcn-ui init`
 
+Pick a theme and replace `app/globals.css`: <https://ui.shadcn.com/themes>
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
