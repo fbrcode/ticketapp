@@ -77,6 +77,35 @@ In order to validate inputs we will use Zod package.
 
 To install it, run: `yarn add zod`
 
+## Form Handling
+
+For form handling we will use React Hook Form.
+
+To install it, run: `yarn add react-hook-form`
+
+To use Zod with the hook form, install the zod resolver: `yarn add @hookform/resolvers`
+
+To allow description markups in the form, install mde packages:
+
+From <https://www.npmjs.com/package/react-simplemde-editor>
+
+- `yarn add react-simplemde-editor --dev`
+- `yarn add easymde --dev`
+
+Also install the component library that are used in the form:
+
+- `npx shadcn-ui add form`
+- `npx shadcn-ui add input`
+- `npx shadcn-ui add select`
+
+For visualization we can use:
+
+- Card component: `npx shadcn-ui add card`
+- React Markdown: `yarn add react-markdown`
+- Tailwind CSS for Markdown: `yarn add @tailwindcss/typography`
+
+To delete we can use the alert dialog component: `npx shadcn-ui add alert-dialog`
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
