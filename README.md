@@ -71,6 +71,12 @@ Add prisma to the project:
 
 Shadcn/ui table component is used to display the data: `npx shadcn-ui add table`
 
+## Schema Validation
+
+In order to validate inputs we will use Zod package.
+
+To install it, run: `yarn add zod`
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
