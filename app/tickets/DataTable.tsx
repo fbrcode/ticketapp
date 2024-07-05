@@ -1,3 +1,5 @@
+import TicketPriority from "@/components/TicketPriority";
+import TicketStatusBadge from "@/components/TicketStatusBadge";
 import {
   Table,
   TableBody,
@@ -20,26 +22,56 @@ const DataTable = ({ tickets }: Props) => {
           <TableHeader>
             <TableRow>
               <TableHead>Title</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Priority</TableHead>
-              <TableHead>Created At</TableHead>
-              <TableHead>Updated At</TableHead>
+              <TableHead>
+                <div className="flex justify-center">Status</div>
+              </TableHead>
+              <TableHead>
+                <div className="flex justify-center">Priority</div>
+              </TableHead>
+              <TableHead>Created</TableHead>
+              <TableHead>Updated</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {tickets
               ? tickets.map((ticket) => {
-                  const createdAt = ticket.created_at
+                  // const createdAt = ticket.created_at.toISOString().split("T")[0];
+                  // const updatedAt = ticket.updated_at.toISOString().split("T")[0];
+
+                  const createdAt = ticket.created_at.toLocaleDateString(
+                    "en-US",
+                    {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                      hour: "numeric",
+                      minute: "2-digit",
+                      hour12: true,
+                    }
+                  );
+
+                  const updatedAtSplit = ticket.updated_at
                     .toISOString()
-                    .split("T")[0];
-                  const updatedAt = ticket.updated_at
-                    .toISOString()
-                    .split("T")[0];
+                    .split("Z")[0]
+                    .split("T");
+
+                  const updatedAt = `${
+                    updatedAtSplit[0]
+                  } at ${updatedAtSplit[1].slice(0, -7)}`;
+
                   return (
                     <TableRow key={ticket.id} data-href="/">
                       <TableCell>{ticket.title}</TableCell>
-                      <TableCell>{ticket.status}</TableCell>
-                      <TableCell>{ticket.priority}</TableCell>
+                      <TableCell>
+                        <div className="flex justify-center">
+                          <TicketStatusBadge status={ticket.status} />
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <div className="flex justify-center">
+                          <TicketPriority priority={ticket.priority} />
+                        </div>
+                      </TableCell>
                       <TableCell>{createdAt}</TableCell>
                       <TableCell>{updatedAt}</TableCell>
                     </TableRow>
