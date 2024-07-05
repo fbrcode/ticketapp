@@ -106,6 +106,12 @@ For visualization we can use:
 
 To delete we can use the alert dialog component: `npx shadcn-ui add alert-dialog`
 
+## Pagination
+
+For pagination styling, use [Lucide React](https://lucide.dev/guide/packages/lucide-react) that comes along with Shadcn/ui installation.
+
+`chrevron` Pagination Icons styling: <https://lucide.dev/icons/?search=chrevron>
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
