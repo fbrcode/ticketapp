@@ -97,14 +97,17 @@ const DataTable = ({ tickets, searchParams }: Props) => {
                     }
                   );
 
-                  const updatedAtSplit = ticket.updated_at
-                    .toISOString()
-                    .split("Z")[0]
-                    .split("T");
-
-                  const updatedAt = `${
-                    updatedAtSplit[0]
-                  } at ${updatedAtSplit[1].slice(0, -7)}`;
+                  const updatedAt = ticket.updated_at.toLocaleDateString(
+                    "en-US",
+                    {
+                      day: "2-digit",
+                      month: "short",
+                      year: "numeric",
+                      hour: "numeric",
+                      minute: "2-digit",
+                      hour12: true,
+                    }
+                  );
 
                   return (
                     <TableRow key={ticket.id} data-href="/">

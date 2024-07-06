@@ -17,7 +17,7 @@ const Tickets = async ({ searchParams }: { searchParams: SearchParams }) => {
   const pageSite = 10;
   const page = parseInt(searchParams.page) || 1;
 
-  const orderBy = searchParams.orderBy ? searchParams.orderBy : "updated_at";
+  const orderBy = searchParams.orderBy ? searchParams.orderBy : "created_at";
 
   const statuses = Object.values(status);
   const validStatus = statuses.includes(searchParams.status)
