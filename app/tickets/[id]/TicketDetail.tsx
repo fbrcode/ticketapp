@@ -9,16 +9,18 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ticket } from "@prisma/client";
+import { app_user, ticket } from "@prisma/client";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import DeleteButton from "./DeleteButton";
+import AssignTicket from "@/components/AssignTicket";
 
 interface Props {
   ticket: ticket;
+  users: app_user[];
 }
 
-const TicketDetail = ({ ticket }: Props) => {
+const TicketDetail = ({ ticket, users }: Props) => {
   return (
     <div className="lg:grid lg:grid-cols-4">
       <Card className="mx-4 mb-4 lg:col-span-3 lg:mr-4">
@@ -38,6 +40,7 @@ const TicketDetail = ({ ticket }: Props) => {
         <CardFooter>Updated: {ticket.updated_at.toLocaleString()}</CardFooter>
       </Card>
       <div className="mx-4 flex lg:flex-col lg:mx-0 gap-2">
+        <AssignTicket ticket={ticket} users={users} />
         <Link
           href={`/tickets/edit/${ticket.id}`}
           className={`${buttonVariants({ variant: "default" })}`}
