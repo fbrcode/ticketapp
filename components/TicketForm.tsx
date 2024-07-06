@@ -162,6 +162,7 @@ const TicketForm = ({ ticket }: Props) => {
           </Button>
         </form>
       </Form>
+      <p className="text-destructive">{error}</p>
     </div>
   );
 };

@@ -9,19 +9,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
   relationMode = "foreignKeys"
-}
-
-model ticket {
-  id Int @id @default(autoincrement())
-  title String @db.Text
-  description String @db.Text
-  status status @default(OPEN)
-  priority priority @default(MEDIUM)
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
 }
 
 enum status {
@@ -34,4 +24,33 @@ enum priority {
   LOW
   MEDIUM
   HIGH
+}
+
+model ticket {
+  id          Int       @id @default(autoincrement())
+  title       String    @db.Text
+  description String    @db.Text
+  status      status    @default(OPEN)
+  priority    priority  @default(MEDIUM)
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+  user_id     Int?
+  user        app_user? @relation(fields: [user_id], references: [id])
+}
+
+enum role {
+  ADMIN
+  TECH
+  USER
+}
+
+model app_user {
+  id               Int      @id @default(autoincrement())
+  name             String   @db.Text
+  username         String   @unique @db.Text
+  password         String   @db.Text
+  role             role     @default(USER)
+  assigned_tickets ticket[]
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
 }
