@@ -60,6 +60,12 @@ const UserForm = ({ user }: Props) => {
       }
 
       if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error("Not authorized to perform action.");
+        }
+        if (response.status === 403) {
+          throw new Error("User not allowed to perform action.");
+        }
         throw new Error("An error occurred. Please try again.");
       }
 
@@ -68,9 +74,9 @@ const UserForm = ({ user }: Props) => {
 
       router.push("/tickets");
       router.refresh();
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-      setError("An error occurred. Please try again.");
+      setError(error.message);
       setIsSubmitting(false);
     }
   }
@@ -161,7 +167,7 @@ const UserForm = ({ user }: Props) => {
           </Button>
         </form>
       </Form>
-      <p className="text-destructive">{error}</p>
+      <p className="text-destructive mt-2">{error}</p>
     </div>
   );
 };
