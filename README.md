@@ -118,6 +118,12 @@ Handle database password encryption with bcrypt: `yarn add bcryptjs @types/bcryp
 
 We use Next Auth for user authentication: `yarn add next-auth`
 
+Generate a secret key for the session: `openssl rand -base64 32`
+
+Add the secret key to `.env.local` file: `NEXTAUTH_SECRET=...`
+
+Don't forget to generate a new secret key for production.
+
 ## Dashboard
 
 For dashboard we will use Recharts: `yarn add recharts`
