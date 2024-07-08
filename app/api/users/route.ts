@@ -7,21 +7,21 @@ import options from "../auth/[...nextauth]/options";
 
 export async function POST(request: NextRequest) {
   // check if the user is authenticated to create a ticket
-  const session = await getServerSession(options);
+  // const session = await getServerSession(options);
 
-  if (!session) {
-    return NextResponse.json(
-      { error: "Not authenticated" },
-      { status: 401, headers: { "Content-Type": "application/json" } }
-    );
-  }
+  // if (!session) {
+  //   return NextResponse.json(
+  //     { error: "Not authenticated" },
+  //     { status: 401, headers: { "Content-Type": "application/json" } }
+  //   );
+  // }
 
-  if (session.user.role !== "ADMIN") {
-    return NextResponse.json(
-      { error: "Not administrator" },
-      { status: 403, headers: { "Content-Type": "application/json" } }
-    );
-  }
+  // if (session.user.role !== "ADMIN") {
+  //   return NextResponse.json(
+  //     { error: "Not administrator" },
+  //     { status: 403, headers: { "Content-Type": "application/json" } }
+  //   );
+  // }
 
   const body = await request.json();
   const validation = userSchema.safeParse(body);
