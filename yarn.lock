@@ -1845,6 +1845,24 @@ find-up@^5.0.0:
     locate-path "^6.0.0"
     path-exists "^4.0.0"
 
+flagsmith-react@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/flagsmith-react/-/flagsmith-react-1.2.4.tgz#b82a62cde248b07e1e34d4a9d2a66ac72b68151a"
+  integrity sha512-BJiG8TlZZDekLu7znhpjhw6ahh4nvgMQbvyzEHCC8cAS7JAx4ayLvmSvMSp2P7ttUnJpBYb8dO0EBktzulpmUw==
+  dependencies:
+    flagsmith "^1.5.0"
+    prop-types "^15.7.2"
+
+flagsmith@^1.5.0:
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/flagsmith/-/flagsmith-1.7.4.tgz#f4ee977a31a411ec5bdd51f6c1efbddb5e290d63"
+  integrity sha512-op2oGYkCmzysO2fNz6SsQ/3bbSrjotRYUHStrkzKqLweMVZTCt18qPkEMSOM4jYvGjXBy1X/zswgelEEAUKO1Q==
+
+flagsmith@^9.0.4:
+  version "9.0.4"
+  resolved "https://registry.yarnpkg.com/flagsmith/-/flagsmith-9.0.4.tgz#7df04884c26ed18e7ab531ba602eb46107257c3e"
+  integrity sha512-klYkVMh5dCyqnqqcsWbgzbyP+JndW7dX9KhmBnLhHJp54Yzpoy7zQfSs/bF8JIRD3lIUZ3JsVYiFmoft9j3s3g==
+
 flat-cache@^3.0.4:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-3.2.0.tgz#2c0c2d5040c99b1632771a9d105725c0115363ee"
@@ -3319,7 +3337,7 @@ prisma@^5.16.1:
   dependencies:
     "@prisma/engines" "5.16.1"
 
-prop-types@^15.6.2, prop-types@^15.8.1:
+prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
