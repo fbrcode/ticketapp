@@ -1,6 +1,19 @@
 import DashChart from "@/components/DashChart";
 import DashRecentTickets from "@/components/DashRecentTickets";
+import TicketPieChart from "@/components/TicketPieChart";
 import prisma from "@/prisma/db";
+
+const STATUS_COLORS = {
+  OPEN: "#ef4444",
+  IN_PROGRESS: "#f59e0b",
+  DONE: "#22c55e",
+};
+
+const PRIORITY_COLORS = {
+  LOW: "#22c55e",
+  MEDIUM: "#f59e0b",
+  HIGH: "#dc2626",
+};
 
 async function Dashboard() {
   const tickets = await prisma.ticket.findMany({
@@ -23,7 +36,27 @@ async function Dashboard() {
     };
   });
 
-  // console.log(groupTickets);
+  const statusDistribution = await prisma.ticket.groupBy({
+    by: ["status"],
+    _count: true,
+  });
+
+  const priorityDistribution = await prisma.ticket.groupBy({
+    by: ["priority"],
+    _count: true,
+  });
+
+  const statusData = statusDistribution.map((item) => ({
+    name: item.status,
+    value: item._count,
+    color: STATUS_COLORS[item.status],
+  }));
+
+  const priorityData = priorityDistribution.map((item) => ({
+    name: item.priority,
+    value: item._count,
+    color: PRIORITY_COLORS[item.priority],
+  }));
 
   return (
     <div>
@@ -33,6 +66,18 @@ async function Dashboard() {
         </div>
         <div>
           <DashChart data={data} />
+        </div>
+        <div>
+          <TicketPieChart
+            data={statusData}
+            title="Tickets Status Distribution"
+          />
+        </div>
+        <div>
+          <TicketPieChart
+            data={priorityData}
+            title="Tickets Priority Distribution"
+          />
         </div>
       </div>
     </div>
