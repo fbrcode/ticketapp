@@ -8,6 +8,8 @@ import {
   Tooltip,
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { useFeatureFlag } from "@/hooks/useFeatureFlag";
+import { FeatureFlag } from "@/types/features";
 
 interface PieChartData {
   name: string;
@@ -21,6 +23,10 @@ interface TicketPieChartProps {
 }
 
 const TicketPieChart = ({ data, title }: TicketPieChartProps) => {
+  const isEnabled = useFeatureFlag(FeatureFlag.ShowPieChart, true);
+
+  if (!isEnabled) return null;
+
   return (
     <Card className="col-span-2">
       <CardHeader>
