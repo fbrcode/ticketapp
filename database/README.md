@@ -27,3 +27,11 @@ Define your schema in `schema.prisma` and run the first migration with `npx pris
 Best practice for instantiating Prisma Client with Next.js
 
 <https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices>
+
+## Init Admin user in the database
+
+Since application is running with authentication, we need to create an admin user in the database.
+
+The user/password is `fabio/fabio` when the script `02-sample-admin-user.sql` is executed in the database.
+
+Run it with psql client like `psql -f database/02-sample-admin-user.sql`
