@@ -27,6 +27,13 @@ const TicketPieChart = ({ data, title }: TicketPieChartProps) => {
 
   if (!isEnabled) return null;
 
+  // Normalize the value field to ensure the total percentage does not exceed 100%
+  const totalValue = data.reduce((acc, item) => acc + item.value, 0);
+  const normalizedData = data.map((item) => ({
+    ...item,
+    value: (item.value / totalValue) * 100,
+  }));
+
   return (
     <Card className="col-span-2">
       <CardHeader>
@@ -36,7 +43,7 @@ const TicketPieChart = ({ data, title }: TicketPieChartProps) => {
         <ResponsiveContainer width="100%" height={300}>
           <PieChart>
             <Pie
-              data={data}
+              data={normalizedData}
               cx="50%"
               cy="50%"
               innerRadius={60}
@@ -45,7 +52,7 @@ const TicketPieChart = ({ data, title }: TicketPieChartProps) => {
               dataKey="value"
               label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
             >
-              {data.map((entry, index) => (
+              {normalizedData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
             </Pie>
