@@ -6,6 +6,19 @@ import { buttonVariants } from "@/components/ui/button";
 import Pagination from "@/components/Pagination";
 import StatusFilter from "@/components/StatusFilter";
 import { status, ticket } from "@prisma/client";
+import TicketPieChart from "@/components/TicketPieChart";
+
+const STATUS_COLORS = {
+  OPEN: "#ef4444",
+  IN_PROGRESS: "#f59e0b",
+  DONE: "#22c55e",
+};
+
+const PRIORITY_COLORS = {
+  LOW: "#22c55e",
+  MEDIUM: "#f59e0b",
+  HIGH: "#dc2626",
+};
 
 export interface SearchParams {
   status: status;
@@ -41,8 +54,30 @@ const Tickets = async ({ searchParams }: { searchParams: SearchParams }) => {
 
   const ticketCount = await prisma.ticket.count({ where });
 
+  const statusDistribution = await prisma.ticket.groupBy({
+    by: ["status"],
+    _count: true,
+  });
+
+  const priorityDistribution = await prisma.ticket.groupBy({
+    by: ["priority"],
+    _count: true,
+  });
+
+  const statusData = statusDistribution.map((item) => ({
+    name: item.status,
+    value: item._count,
+    color: STATUS_COLORS[item.status],
+  }));
+
+  const priorityData = priorityDistribution.map((item) => ({
+    name: item.priority,
+    value: item._count,
+    color: PRIORITY_COLORS[item.priority],
+  }));
+
   return (
-    <div>
+    <div className="space-y-4">
       <div className="flex gap-2">
         <Link
           href="/tickets/new"
@@ -51,6 +86,10 @@ const Tickets = async ({ searchParams }: { searchParams: SearchParams }) => {
           New Ticket
         </Link>
         <StatusFilter />
+      </div>
+      <div className="grid grid-cols-4 gap-4">
+        <TicketPieChart data={statusData} title="Status Distribution" />
+        <TicketPieChart data={priorityData} title="Priority Distribution" />
       </div>
       <DataTable tickets={tickets} searchParams={searchParams} />
       <Pagination
