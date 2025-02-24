@@ -16,7 +16,7 @@ const DashChart = ({ data }: dataProps) => {
   return (
     <Card className="col-span-4">
       <CardHeader>
-        <CardTitle>Ticket Counts</CardTitle>
+        <CardTitle>Ticket Total Amount by Status</CardTitle>
       </CardHeader>
       <CardContent className="pl-2">
         <ResponsiveContainer width="100%" height={350}>
