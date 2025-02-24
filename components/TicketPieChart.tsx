@@ -25,7 +25,7 @@ interface TicketPieChartProps {
 const TicketPieChart = ({ data, title }: TicketPieChartProps) => {
   const isEnabled = useFeatureFlag(FeatureFlag.ShowPieChart, true);
 
-  if (!isEnabled) return null;
+  if (!isEnabled) return <div></div>;
 
   return (
     <Card className="col-span-2">
@@ -43,7 +43,7 @@ const TicketPieChart = ({ data, title }: TicketPieChartProps) => {
               outerRadius={100}
               paddingAngle={2}
               dataKey="value"
-              label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+              label={({ percent }) => `${(percent * 100).toFixed(2)}%`}
             >
               {data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
