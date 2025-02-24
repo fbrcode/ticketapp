@@ -50,7 +50,7 @@ const TicketPieChart = ({ data, title }: TicketPieChartProps) => {
               outerRadius={100}
               paddingAngle={2}
               dataKey="value"
-              label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+              label={({ percent }) => `${(percent * 100).toFixed(2)}%`}
             >
               {normalizedData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />
