@@ -22,7 +22,7 @@ const DashRecentTickets = ({ tickets }: Props) => {
   return (
     <Card className="col-span-3">
       <CardHeader>
-        <CardTitle>Recent Updated</CardTitle>
+        <CardTitle>Tickets Recently Updated</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-8">
