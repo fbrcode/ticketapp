@@ -67,6 +67,11 @@ async function Dashboard() {
     priorityResult.error;
 
   if (dbError) {
+    if (typeof window === "undefined") {
+      // Log detailed error server-side
+      // eslint-disable-next-line no-console
+      console.error("Database error:", dbError);
+    }
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center p-8 max-w-md mx-auto">
@@ -87,11 +92,10 @@ async function Dashboard() {
               </svg>
             </div>
             <h3 className="text-lg font-medium text-yellow-800 mb-2">
-              Database Not Connected
+              Database Not Available
             </h3>
             <p className="text-yellow-700 mb-4">
-              The application could not connect to the database. Please check
-              your database configuration.
+              Sorry, something went wrong connecting to the database.
             </p>
             <div className="text-left bg-yellow-100 rounded p-3 text-sm text-yellow-800">
               <p className="font-medium mb-1">To fix this:</p>
@@ -103,7 +107,8 @@ async function Dashboard() {
                   </code>{" "}
                   environment variable
                 </li>
-                <li>Ensure your database is running</li>
+                <li>Ensure your database server is running</li>
+                <li>Verify database connection credentials</li>
                 <li>Run database migrations if needed</li>
               </ol>
             </div>
